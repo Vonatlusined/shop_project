@@ -3,17 +3,31 @@ package app.domain;
 import java.util.Objects;
 
 public class Product {
-    private final  Long id;
+    private   Long id;
     private boolean isActive;
-    private String ProductName;
+    private String name;
     private double price;
 
 
-    public Product(Long id, boolean isActive, String productName, double price) {
-        this.id = id;
+    public Product( boolean isActive, String productName, double price) {
         this.isActive = isActive;
-        ProductName = productName;
+        name = productName;
         this.price = price;
+    }
+
+    public Product(Long id,  String name, double price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+
+    public Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getId() {
@@ -29,11 +43,11 @@ public class Product {
     }
 
     public String getProductName() {
-        return ProductName;
+        return name;
     }
 
-    public void setProductName(String productName) {
-        ProductName = productName;
+    public void setName(String productName) {
+        name = productName;
     }
 
     public double getPrice() {
@@ -48,23 +62,25 @@ public class Product {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return isActive == product.isActive && Double.compare(price, product.price) == 0 && Objects.equals(id, product.id) && Objects.equals(ProductName, product.ProductName);
+        return isActive == product.isActive && Double.compare(price, product.price) == 0 && Objects.equals(id, product.id) && Objects.equals(name, product.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, isActive, ProductName, price);
+        return Objects.hash(id, isActive, name, price);
     }
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Product{");
-        sb.append("id=").append(id);
-        sb.append(", isActive=").append(isActive);
-        sb.append(", ProductName='").append(ProductName).append('\'');
-        sb.append(", price=").append(price);
-        sb.append('}');
-        return sb.toString();
+        return "\u001B[32m"+"                            Product: " +
+                "id=" + id +
+                ", isActive=" + isActive +
+                ", name='" + name + '\'' +
+                ", price=" + price  + "\u001B[0m";
+    }
+
+    public String getName() {
+        return name;
     }
 }
 
