@@ -51,8 +51,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void update(Product product) {
-
-    if (product == null){
+        if (product == null){
         throw new ProductUpdateException("Product cannot be null");
     }
     Long id = product.getId();
